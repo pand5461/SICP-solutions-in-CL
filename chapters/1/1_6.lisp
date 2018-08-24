@@ -10,7 +10,7 @@
 ; which in this case will result in an endless loop
 (defun sqrt-iter (guess x)
   (labels ((good-enough? (guess x)
-	     (< (abs (- x guess)) 0.0001))
+	     (< (abs (- x (* guess guess))) 0.0001))
 	   (improve (guess x)
 	     (/ (+ guess (/ x guess)) 2)))
     (new-if (good-enough? guess x)
