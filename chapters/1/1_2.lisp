@@ -1,4 +1,4 @@
-;;; Execrcise 1.2 from SICP
+;;; Exercise 1.2 from SICP
 
 (/ (+ 5
       4
