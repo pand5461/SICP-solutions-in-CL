@@ -1,0 +1,55 @@
+;;; Exercise 1.28
+
+(declaim (inline square))
+
+(defun square (x) (* x x))
+
+(defun expmod (base expt m)
+  (labels ((sqrt1-checker (x)
+	     (cond ((= x 1) 1)
+		   ((= x (1- m)) 1)
+		   (t (return-if-not-1 (helper x)))))
+	   (helper (x)
+		   (rem (square x) m))
+	   (return-if-not-1 (x)
+			    (if (= x 1) 0 x)))
+    (cond ((zerop expt) 1)
+	  ((evenp expt)
+	   (sqrt1-checker (expmod base (/ expt 2) m)))
+	  (t
+	   (rem
+	    (* base (expmod base (1- expt) m))
+	    m)))))
+
+(defun mr-test (n)
+  (labels ((try-it (a)
+	     (= (expmod a (1- n) n) 1)))
+    (try-it (1+ (random (1- n))))))
+
+(defun fast-prime-p (n)
+  (labels ((helper (k)
+	     (cond ((= n 1) nil)
+		   ((zerop k) t)
+		   ((mr-test n) (helper (truncate k 2)))
+		   (t nil))))
+    (helper n)))
+
+(defun timed-prime-test (n)
+  (labels ((print-if (x)
+	     (cond (x (format t "~a *** ~a~%" (car x) (cdr x)) t)
+		   (t nil)))
+	   (start-prime-test (n start-time)
+	     (if (fast-prime-p n)
+		 (cons n (- (get-internal-real-time) start-time))
+		 nil)))
+    (print-if (start-prime-test n (get-internal-real-time)))))
+
+(defun timed-prime-search (nstart nprimes)
+  (labels ((nextn (n)
+	     (if (oddp n)
+		 (+ n 2)
+		 (+ n 1))))
+    (cond ((zerop nprimes) nil)
+	  ((= nstart 1) (timed-prime-search 2 nprimes))
+	  ((timed-prime-test nstart) (timed-prime-search (nextn nstart) (1- nprimes)))
+	  (t (timed-prime-search (nextn nstart) nprimes)))))
