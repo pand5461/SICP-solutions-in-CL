@@ -1,0 +1,16 @@
+;;; Exercise 2.54
+
+(defun equal? (obj1 obj2)
+  (cond ((and (symbolp obj1)
+	      (symbolp obj2))
+	 (eq obj1 obj2))
+	((and (numberp obj1)
+	      (numberp obj2))
+	 (= obj1 obj2))
+	((and (consp obj1)
+	      (consp obj2))
+	 (and (equal? (car obj1)
+		      (car obj2))
+	      (equal? (cdr obj1)
+		      (cdr obj2))))
+	(t nil)))
