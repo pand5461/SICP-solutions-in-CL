@@ -44,7 +44,7 @@
   (if (null (car seqs))
       nil
       (cons (accumulate op init (map-list #'car seqs))
-	    (accumulate-n op init (map-list 'cdr seqs)))))
+	    (accumulate-n op init (map-list #'cdr seqs)))))
 
 ;; 2.37
 (defun dot-product (v w)

@@ -1,8 +1,7 @@
 ;;; Exercise 1.24
 
-(declaim (inline square))
-
-(defun square (x) (* x x))
+(load "SICP-utils")
+(use-package :sicp-utils)
 
 (defun expmod (base expt m)
   (cond ((zerop expt) 1)

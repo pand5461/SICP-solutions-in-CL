@@ -1,8 +1,7 @@
 ;;; Exercises 1.21, 1.22, 1.23
 
-(declaim (inline square))
-
-(defun square (x) (* x x))
+(load "SICP-utils")
+(use-package :sicp-utils)
 
 (defun prime-p (n)
   (cond ((<= n 1) nil)
@@ -48,7 +47,7 @@
 (print-smallest-divisor 19999)  ;; 7
 
 ;; 1.22: Testing if x10 increase in test prime number increases time to test by sqrt(10) ~ 3 times  
-(timed-primed-search 10000000000000   3) ;; times around 30 on my machine
-(timed-primed-search 100000000000000  3) ;; around 100
-(timed-primed-search 1000000000000000 3) ;; around 300
+(timed-prime-search 10000000000000   3) ;; times around 30 on my machine
+(timed-prime-search 100000000000000  3) ;; around 100
+(timed-prime-search 1000000000000000 3) ;; around 300
 ;; Conclusion: sqrt(n) estimate of complexity is reasonable

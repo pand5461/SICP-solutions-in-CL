@@ -1,7 +1,7 @@
 ;;; Exercise 1.7
+(load "SICP-utils")
 
-(defun average (x y)
-  (/ (+ x y) 2))
+(use-package :sicp-utils)
 
 (defun mysqrt (x)
   (labels ((sqrt-iter (guess)

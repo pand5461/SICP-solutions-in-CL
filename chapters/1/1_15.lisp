@@ -1,6 +1,7 @@
 ;;; Exercise 1.15
 
-(defun square (x) (* x x))
+(load "SICP-utils")
+(use-package :sicp-utils)
 
 (defun p (x) (* x (- 3 (* 4 (square x)))))
 

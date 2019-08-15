@@ -78,3 +78,29 @@
 	(t (successive-merge (set-adjoin (make-code-tree (car leaf-set)
 							 (cadr leaf-set))
 					 (cddr leaf-set))))))
+
+;; 2.70
+(let* ((rock-song-lyrics
+	 '((A 2) (GET 2) (SHA 3) (WAH 1)
+	   (BOOM 1) (JOB 2) (NA 16) (YIP 9)))
+       (rock-huffman-tree
+	(generate-huffman-tree rock-song-lyrics))
+       (message
+	'(Get a job
+	  Sha na na na na na na na na
+	  Get a job
+	  Sha na na na na na na na na
+	  Wah yip yip yip yip yip yip yip yip yip
+	  Sha boom))
+       (encoded-message
+	(encode message rock-huffman-tree)))
+  (print encoded-message)
+  (format t "~&Initial message length: ~a~%Encoded message length: ~a~%"
+	  (length message) ; 
+	  (length encoded-message)) ; prints 84
+  ;; ensure that decoding is right
+  (print (decode encoded-message rock-huffman-tree)))
+
+;; With a fixed bit length, every symbol
+;; takes 3 bits.
+;; Overall, 36 * 3 = 108 bits

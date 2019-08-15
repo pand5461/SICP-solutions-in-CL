@@ -1,13 +1,16 @@
 ;;; Exercise 1.3
+(load "SICP-utils")
+
+(use-package :sicp-utils)
 
 (defun sum-two-largest-squares (a b c)
 "Procedure takes three numbers and returns the sum of the squares of the two larger numbers"
   (if (>= a b)
-      (+ (* a a)
+      (+ (square a)
 	 (if (>= b c)
-	     (* b b)
-	     (* c c)))
-      (+ (* b b)
+	     (square b)
+	     (square c)))
+      (+ (square b)
 	 (if (>= a c)
-	     (* a a)
-	     (* c c)))))
+	     (square a)
+	     (square c)))))

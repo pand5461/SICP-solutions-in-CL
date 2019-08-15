@@ -1,15 +1,7 @@
 ;;; Exercise 1.36
 
-(defun average (&rest args)
-  (labels ((ave-iter (acc lst nelts)
-	     (if (null lst)
-		 (/ acc nelts)
-		 (ave-iter (+ (car lst) acc)
-			   (cdr lst)
-			   (1+ nelts)))))
-    (if (null args)
-	0
-	(ave-iter 0 args 0))))
+(load "SICP-utils")
+(use-package :sicp-utils)
 
 (defun fixed-point (f first-guess)
   (let ((rtol 1d-6))

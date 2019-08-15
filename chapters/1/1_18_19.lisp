@@ -1,5 +1,8 @@
 ;;; Exercises 1.18 & 1.19
 
+(load "SICP-utils")
+(use-package :sicp-utils)
+
 (defun repeated-action (arg nrep combiner doubler)
   (labels ((iter-helper (arg acc nrep)
 	     (cond ((zerop nrep) acc)
@@ -8,7 +11,7 @@
     (iter-helper arg (funcall combiner) nrep)))
 
 (defun fast-expt (b n)
-  (repeated-action b n '* #'(lambda (x) (* x x))))
+  (repeated-action b n '* #'square))
 
 (defun fast-mult (a b)
   (repeated-action a b '+ #'(lambda (x) (ash x 1))))
@@ -21,8 +24,6 @@
 	      (square (car pq))
 	      (square (cadr pq))
 	      (* (car pq) (cadr pq))))
-
-	   (square (x) (* x x))
 
 	   (t-mul-ab (&optional tpq ab)
 	     (if (null ab)

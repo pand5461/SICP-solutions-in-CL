@@ -1,5 +1,8 @@
 ;;; Exercises 1.31 - 1.33
 
+(load "SICP-utils")
+(use-package :sicp-utils)
+
 ;; tail-recursive definition of #'accumulate for 1.32
 (defun accumulate (combiner null-value term a next b)
   (labels ((acc-iter (a curr-val)
@@ -31,8 +34,6 @@
     (acc-iter a null-value)))
 
 ;; sum of squares of prime numbers for 1.33
-(defun square (x) (* x x))
-
 (defun prime-p (n)
   (cond ((<= n 1) nil)
 	(t(= n (smallest-divisor n)))))

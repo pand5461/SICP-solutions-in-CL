@@ -1,12 +1,7 @@
 ;;; Exercise 1.8
 
-;; This version of #'average must work for an arbitrary number of arguments
-(defun average (x &rest nums)
-  (labels ((ave-iter (acc lst nitems)
-	     (if (null lst)
-		 (/ acc nitems)
-		 (ave-iter (+ acc (car lst)) (cdr lst) (+ nitems 1)))))
-    (ave-iter x nums 1)))
+(load "SICP-utils")
+(use-package :sicp-utils)
 
 (defun cuberoot (x)
   (labels ((cuberoot-iter (guess)
