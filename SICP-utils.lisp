@@ -1,10 +1,8 @@
 ;;; This package contains the utility functions
 ;;; defined in the textbook section of SICP (not in exercises)
-(defpackage :sicp-utils
+(defpackage :sicp
   (:use :cl)
-  (:export :square
-	   :average
-	   :put-op
+  (:export :put-op
 	   :get-op
 	   :hypot
 	   :attach-tag
@@ -32,10 +30,7 @@
 	   :make-complex-from-real-imag
 	   :make-complex-from-mag-ang))
 
-(in-package :sicp-utils)
-
-(defun square (x)
-  (* x x))
+(in-package :sicp)
 
 (defun hypot (a b)
   (let ((aa (coerce (abs a) 'double-float))
@@ -45,15 +40,6 @@
 	  ((zerop ab) 0d0)
 	  (t
 	   (* ab (sqrt (+ 1d0 (square (/ aa ab)))))))))
-
-(defun average (x &rest rest-numbers)
-  (labels ((ave-tco (sum nargs tco-args)
-	       (if (null tco-args)
-		   (/ sum nargs)
-		   (ave-tco (+ sum (car tco-args))
-			    (1+ nargs)
-			    (cdr tco-args)))))
-    (ave-tco x 1 rest-numbers)))
 
 ;; tag system for Chapters 2.4-2.5
 ;; native integer optimization
